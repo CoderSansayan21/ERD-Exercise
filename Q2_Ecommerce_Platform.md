@@ -27,12 +27,125 @@ Draw a complete **Entity-Relationship (ER) Diagram** for the Online E-Commerce P
 Your diagram must:
 
 1. Identify and clearly label all **entities** in the system.
+1.Seller
+2.Product
+3.Category
+4.Customer
+5.Shipping_Address
+6.Order
+7.Order_Item (Weak / Associative Entity)
+8.Payment
+9.Review
+
 2. List the **attributes** for each entity — underline or mark the **primary key** attribute.
+1.Seller
+Seller_ID (PK)
+Store_Name
+Email
+Phone_Number
+Bank_Account_Number
+Registration_Date
+
+2.Product
+Product_ID (PK)
+Product_Title
+Description
+Listed_Price
+Stock_Quantity
+Date_Listed
+
+3.Category
+Category_ID (PK)
+Category_Name
+Description
+
+4.Customer
+Customer_ID (PK)
+Full_Name
+Email
+Hashed_Password
+Phone_Number
+DOB
+Joined_Date
+
+5.Shipping_Address
+Address_ID (PK)
+Street
+City
+Postal_Code
+Country
+
+6.Order
+Order_ID (PK)
+Order_Date_Time
+Order_Status
+Total_Amount
+
+7.Order_Item 
+Quantity
+Unit_Price_At_Purchase
+
+8.Payment
+Payment_ID (PK)
+Payment_Method
+Transaction_Reference_No
+Payment_Date_Time
+Amount_Paid
+Payment_Status
+
+9.Review
+Review_ID (PK)
+Star_Rating
+Comment
+Review_Date
+
 3. Identify all **relationships** between entities and give each relationship a meaningful name.
+
+Seller → Lists → Product
+Category → Contains → Product
+Customer → Saves → Shipping_Address
+Customer → Places → Order
+Order → Contains → Product
+Order → Has → Payment
+Customer → Writes → Review
+Product → Receives → Review
+Order → Uses → Shipping_Address
+
 4. Specify the correct **cardinality** (1:1, 1:N, or M:N) and **participation constraints** (total or partial) for every relationship.
+
+Relationship	                            Cardinality	                        Participation Constraint
+Seller — Lists — Product	                    1 : N	                            Product = Total, Seller = Partial
+Category — Contains — Product	                1 : N	                            Product = Total, Category = Partial
+Customer — Saves — Shipping_Address	            1 : N	                            Shipping_Address = Total, Customer = Partial
+Customer — Places — Order	                    1 : N	                            Order = Total, Customer = Partial
+Order — Contains — Product	                    M : N	                            Order = Partial, Product = Partial
+Order — Has — Payment	                        1 : 1	                            Payment = Total, Order = Total
+Customer — Writes — Review	                    1 : N	                            Review = Total, Customer = Partial
+Product — Receives — Review	                    1 : N	                            Review = Total, Product = Partial
+Order — Uses — Shipping_Address	                N : 1	                            Order = Total, Shipping_Address = Partial
+
+
 5. Identify any **weak entities** and their identifying relationships.
+Order_Item
+
+Order_Item cannot exist without:
+Order
+Product
+
+Order ↔ Contains ↔ Product
+
 6. For every **M:N relationship**, identify and include the **relationship attributes** that belong to the association, not to either individual entity.
 
+Order ↔ Contains ↔ Product
+
+M : N
+
+Relationship Attributes:
+Quantity
+Unit_Price_At_Purchase
+
+
+![alt text](er.jpeg)
 ---
 
 ## Marking Criteria

@@ -25,12 +25,107 @@ Draw a complete **Entity-Relationship (ER) Diagram** for the Hospital Management
 Your diagram must:
 
 1. Identify and clearly label all **entities** in the system.
-2. List the **attributes** for each entity — underline or mark the **primary key** attribute.
-3. Identify all **relationships** between entities and give each relationship a meaningful name.
-4. Specify the correct **cardinality** (1:1, 1:N, or M:N) and **participation constraints** (total or partial) for every relationship.
-5. Identify any **weak entities** and their identifying relationships.
-6. For every **M:N relationship**, identify and include the **relationship attributes** that belong to the association, not to either individual entity.
+1.Department
+2.Doctor
+3.Patient
+4.Visit
+5.Medicine
+6.Prescription 
+7.Room
+8.Admission
 
+2. List the **attributes** for each entity — underline or mark the **primary key** attribute.
+
+1.Department
+Department_ID (PK)
+Department_Name
+Location
+Head_Of_Department
+
+2.Doctor
+Doctor_ID (PK)
+Full_Name
+Medical_License_No
+Specialization
+Phone
+Email
+
+3.Patient
+Patient_ID (PK)
+Full_Name
+DOB
+Gender
+NIC
+Address
+Emergency_Contact_No
+
+4.Visit
+Visit_ID (PK)
+Visit_Date_Time
+Symptoms
+Diagnosis
+Treatment_Plan
+
+5.Medicine
+Medicine_Code (PK)
+Generic_Name
+Brand_Name
+Form
+Unit_Price
+
+
+6..Room
+Room_No (PK)
+Room_Type
+Floor_No
+Daily_Charge_Rate
+
+8.Admission
+Admission_ID (PK)
+Admission_Date
+Discharge_Date
+
+3. Identify all **relationships** between entities and give each relationship a meaningful name.
+
+Department → Employs → Doctor
+
+Patient → Has → Visit
+
+Doctor → Attends → Visit
+
+Visit → Prescribes → Medicine
+
+Patient → Gets_Admitted → Admission
+
+Room → Assigned_To → Admission
+
+
+4. Specify the correct **cardinality** (1:1, 1:N, or M:N) and **participation constraints** (total or partial) for every relationship.
+Relationship	                        Cardinality             	Participation Constraint
+Department — Employs — Doctor	            1 : N	            Doctor = Total, Department = Partial
+Patient — Has — Visit	                    1 : N	            Visit = Total, Patient = Partial
+Doctor — Attends — Visit	                1 : N	            Visit = Total, Doctor = Partial
+Visit — Prescribes — Medicine	            M : N	            Visit = Partial, Medicine = Partial
+Patient — Gets_Admitted — Admission	        1 : N	            Admission = Total, Patient = Partial
+Room — Assigned_To — Admission	            1 : N	            Admission = Total, Room = Partial
+Visit — Prescription — Medicine	            1 : N              	Prescription = Total
+
+5. Identify any **weak entities** and their identifying relationships.
+
+Prescription is the weak entity.
+Visit → Prescribes → Medicine
+
+6. For every **M:N relationship**, identify and include the **relationship attributes** that belong to the association, not to either individual entity.
+Visit ↔ Prescribes ↔ Medicine
+
+M : N
+
+Relationship Attributes:
+Dosage_Instructions
+Quantity
+
+//ERd link
+https://drive.google.com/file/d/1vnGBhBmYEflghYZ6xRWPCsmET_YZvFsn/view?usp=sharing
 ---
 
 ## Marking Criteria
@@ -43,3 +138,4 @@ Your diagram must:
 | Weak entities / relationship attributes | 10 |
 | Diagram clarity and notation | 5 |
 | **Total** | **50** |
+

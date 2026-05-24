@@ -27,12 +27,97 @@ Draw a complete **Entity-Relationship (ER) Diagram** for the Hotel Booking Syste
 Your diagram must:
 
 1. Identify and clearly label all **entities** in the system.
+1.Hotel
+2.Room
+3.Guest
+4.Booking
+5.Service
+6.Booking_Service (Weak / Associative Entity)
+7.Review
 2. List the **attributes** for each entity — underline or mark the **primary key** attribute.
-3. Identify all **relationships** between entities and give each relationship a meaningful name.
-4. Specify the correct **cardinality** (1:1, 1:N, or M:N) and **participation constraints** (total or partial) for every relationship.
-5. Identify any **weak entities** and their identifying relationships.
-6. For every **M:N relationship**, identify and include the **relationship attributes** that belong to the association, not to either individual entity.
 
+Hotel
+- Hotel_ID (PK)
+- Hotel_Name
+- Country
+- Phone_Number
+- Star_Rating
+
+
+Room
+- Room_ID (PK)
+- Room_Number
+- Floor_Number
+- Status
+
+Guest
+- Guest_ID (PK)
+- Full_Name
+- Email
+- Registration_Date
+
+Booking
+- Booking_ID (PK)
+- Booking_Date
+- Booking_Status
+- Total_Cost
+
+Service
+- Service_ID (PK)
+- Service_Name
+- Description
+- Price
+
+
+Review
+- Review_ID (PK)
+- Overall_Rating
+- Comment
+- Review_Date
+
+
+3. Identify all **relationships** between entities and give each relationship a meaningful name.
+
+Hotel → Has → Room
+Guest → Makes → Booking
+Booking → Assigned_To → Room
+Booking → Includes → Service
+Booking → Receives → Review
+Hotel → Receives → Review
+
+4. Specify the correct **cardinality** (1:1, 1:N, or M:N) and **participation constraints** (total or partial) for every relationship.
+
+Hotel (1) → (N) Room        | Room = Total
+Hotel (1) → (N) Room_Type   | Room_Type = Partial
+
+Guest (1) → (N) Booking      | Booking = Total
+Room (1) → (N) Booking       | Booking = Total
+
+Booking (M) → (N) Service    | Both Partial
+
+Booking (1) → (1) Review     | Review = Total
+Hotel (1) → (N) Review       | Review = Total
+
+
+5. Identify any **weak entities** and their identifying relationships.
+
+Booking_Service
+
+Depends on:
+Booking
+Service
+
+Booking ↔ Includes ↔ Service
+
+6. For every **M:N relationship**, identify and include the **relationship attributes** that belong to the association, not to either individual entity.
+Booking ↔ Includes ↔ Service
+
+M : N
+
+Service_Delivery_Date
+
+//ERD link
+https://drive.google.com/file/d/1WyGkAg-FcTRN_chgt6CgdS-Hg6r89NwV/view?usp=sharing
 ---
 
 ## Marking Criteria
